@@ -1,0 +1,3 @@
+queue:
+- name: logQueue
+  rate: 1/s
