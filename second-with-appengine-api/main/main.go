@@ -2,8 +2,11 @@ package main
 
 import (
 	"net/http"
+	"os"
 
-	"github.com/sonatard/appengine-go-migrate-2nd-gen-sample/second-with-appengine-pkg/api"
+	"cloud.google.com/go/profiler"
+
+	"github.com/sonatard/appengine-go-migrate-2nd-gen-sample/second-with-appengine-api/api"
 	"google.golang.org/appengine"
 )
 
@@ -18,8 +21,16 @@ func main() {
 	// logging in Stackdriver logging
 	// panic("init: panic!!")
 
+	// Stackdriver Profiler
+	projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
+	if err := profiler.Start(profiler.Config{
+		DebugLogging: false,
+		ProjectID:    projectID,
+	}); err != nil {
+		panic(err)
+	}
+
 	http.HandleFunc("/", api.IndexHandle)
-	http.HandleFunc("/cmd", api.CmdHandle)
 	http.HandleFunc("/auth", api.AuthHandle)
 	http.HandleFunc("/log", api.LogHandle)
 	http.HandleFunc("/appenginelog", api.AppengineLogHandle)

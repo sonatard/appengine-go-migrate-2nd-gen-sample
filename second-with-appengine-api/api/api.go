@@ -5,14 +5,9 @@ import (
 	"fmt"
 	"net"
 	"net/http"
-	"os"
-	"os/exec"
-
-	stdlog "log"
 
 	"google.golang.org/api/iterator"
 
-	"cloud.google.com/go/profiler"
 	"cloud.google.com/go/spanner"
 	"google.golang.org/appengine"
 	"google.golang.org/appengine/datastore"
@@ -23,40 +18,13 @@ import (
 	"google.golang.org/appengine/user"
 )
 
-// TODO: stackdriver profiler
-// TODO: App Engine Image API
-
 var spannerCli *spanner.Client
 
 func init() {
-	// ctx := context.Background()
-
-	// Stackdriver Profiler
-	projectID := os.Getenv("GOOGLE_CLOUD_PROJECT")
-	if err := profiler.Start(profiler.Config{
-		DebugLogging: false,
-		ProjectID:    projectID,
-	}); err != nil {
-		panic(err)
-	}
-
-	// wget
-	out0, err := exec.Command("wget").CombinedOutput()
-	stdlog.Printf("wget : %v\n", string(out0))
-	stdlog.Printf("wget : error %v\n", err)
-
-	out, err := exec.Command("wget", "https://github.com/sonatard/ghs/releases/download/0.0.10/ghs-0.0.10-linux_amd64.tar.gz", "-O", "/tmp/ghs.tar.gz").CombinedOutput()
-	stdlog.Printf("wget : %v\n", string(out))
-	stdlog.Printf("wget : error %v\n", err)
-
-	// tar
-	out2, err := exec.Command("tar", "xvf", "/tmp/ghs.tar.gz", "-C", "/tmp/").CombinedOutput()
-	stdlog.Printf("tar: %v\n", string(out2))
-	stdlog.Printf("tar: error %v\n", err)
-
 	// Spanner
 	/*
-		spannerCli, err = spanner.NewClientWithConfig(
+		ctx := context.Background()
+		spannerCli, err := spanner.NewClientWithConfig(
 			ctx,
 			fmt.Sprintf("projects/%v/instances/%v/databases/%v", projectID, projectID, projectID),
 			spanner.ClientConfig{
@@ -70,9 +38,9 @@ func init() {
 		}
 
 		q := `CREATE TABLE "Table" (
-			"ID" STRING(MAX) NOT NULL,
-			"Value" STRING(MAX) NOT NULL,
-		) PRIMARY KEY ("ID");`
+						"ID" STRING(MAX) NOT NULL,
+						"Value" STRING(MAX) NOT NULL,
+					) PRIMARY KEY ("ID");`
 	*/
 }
 
@@ -87,16 +55,6 @@ func IndexHandle(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Fprintf(w, "Hello %v!!", u)
 
-}
-
-func CmdHandle(w http.ResponseWriter, r *http.Request) {
-	ctx := appengine.WithContext(r.Context(), r)
-
-	// exec binary
-	out3, err := exec.Command("/tmp/ghs-0.0.10-linux_amd64/ghs", "golang/go", "-m1").CombinedOutput()
-	log.Infof(ctx, "ghs: %v", string(out3))
-	log.Infof(ctx, "ghs: %v", err)
-	fmt.Fprintf(w, "%v", string(out3))
 }
 
 func AuthHandle(w http.ResponseWriter, r *http.Request) {

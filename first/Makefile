@@ -1,4 +1,4 @@
-project=projectid
+project=$(PROJECT)
 service=sample
 version=first
 yaml_dir=./main
@@ -11,8 +11,7 @@ deploy:
     # issue :
 
 deploy_legacy:
-	#appcfg.py -A $(project) -V $(version) --oauth2_access_token=$(gcloud auth print-access-token) update $(yaml_dir)
-	appcfg.py -A $(project) -V first3 --oauth2_access_token=$(gcloud auth print-access-token) update $(yaml_dir)
+	appcfg.py -A $(project) -V $(version) --oauth2_access_token=$(gcloud auth print-access-token) update $(yaml_dir)
 
 logs:
 	gcloud app logs tail --service $(service) --version $(version)
@@ -21,6 +20,9 @@ browse:
 	gcloud app browse --service $(service) --version $(version)
 
 # APIs
+index:
+	curl $(url)
+
 log:
 	curl $(url)/log
 

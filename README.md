@@ -9,14 +9,14 @@ Reference is [Migrating your App Engine app from Go 1.9 to Go 1.11](https://clou
 - dep
 
 
-### second-with-appengine-pkg
+### second-with-appengine-api
 - Go 1.11
 - App Engine second generation
 - Use App Engine API
 - Use appengine.Main Method
 - dep
 
-### second-without-appengine-pkg
+### second-without-appengine-api
 - Go 1.11
 - App Engine second generation
 - Not use [App Engine API](https://cloud.google.com/appengine/docs/standard/go/reference)
@@ -42,3 +42,16 @@ Reference is [Migrating your App Engine app from Go 1.9 to Go 1.11](https://clou
 - Blobstore sample
 - Cloud SQL sample
 - test for Spanner 
+
+
+## Usage
+
+```
+export GO111MODULE=on
+export PROJECT=your_project_id
+cd [first, second-with-appengine-api or second-without-appengine-api]
+make dep
+make deploy
+make index
+```
+

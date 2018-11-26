@@ -5,26 +5,37 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"os/exec"
 
+	cloudtasks "cloud.google.com/go/cloudtasks/apiv2beta3"
 	"cloud.google.com/go/datastore"
-	"google.golang.org/genproto/googleapis/cloud/tasks/v2beta3"
+	"cloud.google.com/go/spanner"
+	tasks "google.golang.org/genproto/googleapis/cloud/tasks/v2beta3"
 )
 
+var spannerCli *spanner.Client
+
 func init() {
-	// wget
-	out0, err := exec.Command("wget").CombinedOutput()
-	log.Printf("wget : %v\n", string(out0))
-	log.Printf("wget : error %v\n", err)
+	// Spanner
+	/*
+		ctx := context.Background()
+		spannerCli, err := spanner.NewClientWithConfig(
+			ctx,
+			fmt.Sprintf("projects/%v/instances/%v/databases/%v", projectID, projectID, projectID),
+			spanner.ClientConfig{
+				SessionPoolConfig: spanner.SessionPoolConfig{
+					MinOpened: 1,
+				},
+			},
+		)
+		if err != nil {
+			panic(err)
+		}
 
-	out, err := exec.Command("wget", "https://github.com/sonatard/ghs/releases/download/0.0.10/ghs-0.0.10-linux_amd64.tar.gz", "-O", "/tmp/ghs.tar.gz").CombinedOutput()
-	log.Printf("wget : %v\n", string(out))
-	log.Printf("wget : error %v\n", err)
-
-	// tar
-	out2, err := exec.Command("tar", "xvf", "/tmp/ghs.tar.gz", "-C", "/tmp/").CombinedOutput()
-	log.Printf("tar: %v\n", string(out2))
-	log.Printf("tar: error %v\n", err)
+		q := `CREATE TABLE "Table" (
+						"ID" STRING(MAX) NOT NULL,
+						"Value" STRING(MAX) NOT NULL,
+					) PRIMARY KEY ("ID");`
+	*/
 }
 
 //
@@ -67,14 +78,6 @@ func LogHandle(w http.ResponseWriter, r *http.Request) {
 	log.Println("Call handle")
 
 	fmt.Fprintln(w, "logHandle!!")
-}
-
-func CmdHandle(w http.ResponseWriter, r *http.Request) {
-	// exec binary
-	out3, err := exec.Command("/tmp/ghs-0.0.10-linux_amd64/ghs", "golang/go", "-m1").CombinedOutput()
-	log.Printf("ghs: %v\n", string(out3))
-	log.Printf("ghs: %v\n", err)
-	fmt.Fprintf(w, "%v", string(out3))
 }
 
 func AppengineLogHandle(w http.ResponseWriter, r *http.Request) {

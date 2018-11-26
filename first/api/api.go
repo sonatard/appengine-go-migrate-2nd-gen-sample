@@ -3,9 +3,7 @@ package api
 import (
 	"fmt"
 	"net/http"
-	"os"
 
-	"cloud.google.com/go/profiler"
 	"google.golang.org/appengine"
 	"google.golang.org/appengine/datastore"
 	"google.golang.org/appengine/log"
@@ -14,21 +12,6 @@ import (
 	"google.golang.org/appengine/taskqueue"
 	"google.golang.org/appengine/user"
 )
-
-func init() {
-	// TODO: Download and exec command
-	// wget binary -O /tmp
-	// exec binary /tmp/binary
-
-	if err := profiler.Start(profiler.Config{
-		// Service:        os.Getenv("GAE_SERVICE"),
-		// ServiceVersion: os.Getenv("GAE_VERSION"),
-		DebugLogging: false,
-		ProjectID:    os.Getenv("GOOGLE_CLOUD_PROJECT"),
-	}); err != nil {
-		panic(err)
-	}
-}
 
 func IndexHandle(w http.ResponseWriter, r *http.Request) {
 	ctx := appengine.WithContext(r.Context(), r)

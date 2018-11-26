@@ -1,6 +1,6 @@
-project=projectid
+project=$(PROJECT)
 service=sample
-version=second-with-appengine-pkg
+version=second-with-appengine-api
 yaml_dir=./main
 url=https://$(version)-dot-$(service)-dot-$(project).appspot.com
 

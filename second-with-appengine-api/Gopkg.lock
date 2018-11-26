@@ -51,14 +51,6 @@
   version = "v2.0.2"
 
 [[projects]]
-  digest = "1:40e195917a951a8bf867cd05de2a46aaf1806c50cf92eebf4c16f78cd196f747"
-  name = "github.com/pkg/errors"
-  packages = ["."]
-  pruneopts = "UT"
-  revision = "645ef00459ed84a119197bfb8d8205042c6df63d"
-  version = "v0.8.0"
-
-[[projects]]
   digest = "1:7139f29149d65f1abcfd127d161aff4de84dcf1c251b3bdc77ad2b522d3e0769"
   name = "go.opencensus.io"
   packages = [
@@ -243,7 +235,6 @@
   input-imports = [
     "cloud.google.com/go/profiler",
     "cloud.google.com/go/spanner",
-    "github.com/pkg/errors",
     "google.golang.org/api/iterator",
     "google.golang.org/appengine",
     "google.golang.org/appengine/datastore",
