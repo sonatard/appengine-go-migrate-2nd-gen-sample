@@ -1,0 +1,5 @@
+cron:
+- description: hourly log
+  url: /log
+  schedule: every 1 minutes
+  timezone: Asia/Tokyo

@@ -30,6 +30,13 @@ Reference is [Migrating your App Engine app from Go 1.9 to Go 1.11](https://clou
 - Not Use appengine.Main Method, Use Normal http.ListenAndServe Method
 - go mod
 
+### exec-cmd
+
+Sample exec following command in App Engine.
+
+- wget
+- tar
+- downloaded binary
 
 ## TODO
 
