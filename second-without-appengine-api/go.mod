@@ -1,4 +1,4 @@
-module github.com/sonatard/appengine-go-sample/second-without-appengine-pkg
+module github.com/sonatard/appengine-go-migrate-2nd-gen-sample/second-without-appengine-pkg
 
 require (
 	cloud.google.com/go v0.33.1

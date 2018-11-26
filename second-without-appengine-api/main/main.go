@@ -6,13 +6,13 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/sonatard/appengine-go-sample/second-without-appengine-pkg/api"
+	"github.com/sonatard/appengine-go-migrate-2nd-gen-sample/second-without-appengine-pkg/api"
 )
 
 /*
 If dose not exist main method.
 ERROR: (gcloud.app.deploy) Error Response: [9] Cloud build xxxx status: FAILURE.
-Build error details: # github.com/sonatard/appengine-go-sample/second-with-appengine-pkg/src
+Build error details: # github.com/sonatard/appengine-go-migrate-2nd-gen-sample/second-with-appengine-pkg/src
 runtime.main_main·f: function main is undeclared in the main package
 */
 

@@ -1,13 +1,13 @@
 project=projectid
 service=sample
 version=first
-yaml_dir=./yaml
+yaml_dir=./main
 url=https://$(version)-dot-$(service)-dot-$(project).appspot.com
 
 deploy:
 	# gcloud app deploy --quiet --version $(version) $(yaml_dir)/app.yaml
 	# ERROR: (gcloud.app.deploy) Error Response: [9] Deployment contains files that cannot be compiled: Compile failed:
-    # 2018/11/23 22:06:31 go-app-builder: Failed parsing input: package "github.com/sonatard/appengine-go-sample/first/vendor/google.golang.org/appengine/log" cannot import internal package "google.golang.org/appengine/internal/log"
+    # 2018/11/23 22:06:31 go-app-builder: Failed parsing input: package "github.com/sonatard/appengine-go-migrate-2nd-gen-sample/first/vendor/google.golang.org/appengine/log" cannot import internal package "google.golang.org/appengine/internal/log"
     # issue :
 
 deploy_legacy:

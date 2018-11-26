@@ -1,7 +1,7 @@
 project=projectid
 service=sample
-version=second-without-appengine-pkg
-yaml_dir=./yaml
+version=second-with-appengine-pkg
+yaml_dir=./main
 url=https://$(version)-dot-$(service)-dot-$(project).appspot.com
 
 deploy:
@@ -13,12 +13,6 @@ deploy_legacy:
     # Value 'go111' for runtime does not match expression '^(?:contrib-dart|dart|go|php|php55|php72|python|python27|python-compat|java|java7|java8|vm|custom|nodejs|ruby)$'
     #  in "./src/app.yaml", line 1, column 10.
     # make: *** [deploy_legacy] Error 2
-
-dep:
-	go get
-
-run:
-	dev_appserver.py $(yaml_dir)/app.yaml
 
 logs:
 	gcloud app logs tail --service $(service) --version $(version)
@@ -66,3 +60,5 @@ searchdelete:
 auth:
 	curl $(url)/auth
 
+dep:
+	dep ensure
