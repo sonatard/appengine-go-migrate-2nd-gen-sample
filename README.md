@@ -48,7 +48,7 @@ Sample exec following command in App Engine.
 - Image sample
 - Blobstore sample
 - Cloud SQL sample
-- test for Spanner 
+- test for Spanner
 
 
 ## Usage
@@ -62,3 +62,6 @@ make deploy
 make index
 ```
 
+## 2nd-gen future
+- cGo https://groups.google.com/forum/#!msg/google-appengine-go/Gw-jWdnN5Gw/xWQGxKvEBwAJ
+- HTTP2 and GRPC https://news.ycombinator.com/item?id=18231783
